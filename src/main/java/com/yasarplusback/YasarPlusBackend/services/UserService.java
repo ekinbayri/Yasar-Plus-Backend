@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor //user repodaki hatayı gideriyor.
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND = "user with email %s not found";
