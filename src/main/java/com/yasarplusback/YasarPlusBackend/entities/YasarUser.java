@@ -36,11 +36,11 @@ public class YasarUser implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
+    private Boolean enabled = false;
 
     public YasarUser(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
         this.surname = surname;
-
         this.email = email;
         this.password = password;
         this.userRole = userRole;
@@ -62,7 +62,10 @@ public class YasarUser implements UserDetails {
     public String getUsername() {
         return email;
     }
-
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -79,8 +82,5 @@ public class YasarUser implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+
 }
