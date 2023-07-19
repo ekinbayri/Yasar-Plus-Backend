@@ -15,6 +15,7 @@ import java.io.Console;
 
 public class RegistrationController {
 
+
     private final RegistrationService registrationService;
 
     @PostMapping
