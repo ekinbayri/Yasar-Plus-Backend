@@ -1,6 +1,7 @@
 package com.yasarplusback.YasarPlusBackend.controllers;
 
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
+import com.yasarplusback.YasarPlusBackend.requests.ImageUploadRequest;
 import com.yasarplusback.YasarPlusBackend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,9 @@ public class UserController {
         return user;
     }
     @PostMapping
-    public YasarUser uploadImage( byte[] image, Long userId){
-        YasarUser user = userService.getOneUser(userId);
-        user.setImage(image);
+    public YasarUser uploadImage(@RequestBody ImageUploadRequest imageUploadRequest){
+        YasarUser user = userService.getOneUser(imageUploadRequest.getUserId());
+        user.setImage(imageUploadRequest.getImage());
         return user;
 
     }

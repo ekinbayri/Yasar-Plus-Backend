@@ -39,7 +39,7 @@ public class YasarUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private Boolean enabled = false;
-    private byte [] image;
+    private String image;
     public YasarUser(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
         this.surname = surname;
@@ -61,7 +61,6 @@ public class YasarUser implements UserDetails {
         return password;
     }
 
-    public byte[] getImage(){return image;}
 
     @Override
     public String getUsername() {
