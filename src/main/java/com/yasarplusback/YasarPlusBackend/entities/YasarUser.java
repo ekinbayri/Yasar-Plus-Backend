@@ -1,5 +1,6 @@
 package com.yasarplusback.YasarPlusBackend.entities;
 
+import com.yasarplusback.YasarPlusBackend.services.ImageService;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.util.Collections;
 @NoArgsConstructor
 @Entity
 public class YasarUser implements UserDetails {
+
 
     @SequenceGenerator(
             name = "user_sequence",
@@ -37,13 +39,14 @@ public class YasarUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private Boolean enabled = false;
-
+    private byte [] image;
     public YasarUser(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
+
     }
 
     @Override
@@ -58,6 +61,8 @@ public class YasarUser implements UserDetails {
         return password;
     }
 
+    public byte[] getImage(){return image;}
+
     @Override
     public String getUsername() {
         return email;
@@ -66,6 +71,7 @@ public class YasarUser implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

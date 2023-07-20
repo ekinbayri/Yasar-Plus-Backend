@@ -21,6 +21,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
+    private final ImageService imageService;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
@@ -47,4 +48,12 @@ public class UserService implements UserDetailsService {
     public int enableUser(String email) {
         return userRepository.enableUser(email);
     }
+    public YasarUser getOneUser(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+
+
+
+
 }
