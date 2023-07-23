@@ -11,5 +11,5 @@ import lombok.ToString;
 @ToString
 public class ImageUploadRequest {
     private final String image;
-    private final Long userId;
+    private final Long id;
 }

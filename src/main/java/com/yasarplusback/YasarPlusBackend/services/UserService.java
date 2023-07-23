@@ -22,13 +22,16 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
     private final ImageService imageService;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
     }
-    public String signUpUser(YasarUser user){
+
+    public String signUpUser(YasarUser user) {
         boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
-        if(userExists){
+        if (userExists) {
             throw new IllegalStateException("Email already registered.");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
@@ -45,15 +48,17 @@ public class UserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
     }
+
     public int enableUser(String email) {
         return userRepository.enableUser(email);
     }
+
     public YasarUser getOneUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-
-
-
+    public YasarUser getOneUserMail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
 }

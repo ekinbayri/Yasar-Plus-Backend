@@ -6,19 +6,24 @@ import com.yasarplusback.YasarPlusBackend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path ="/profile") //local:8080/registration
+@RequestMapping(path = "/profile") // local:8080/registration
 @AllArgsConstructor
 public class UserController {
     UserService userService;
-    @GetMapping(path = "/{id}")
-    public YasarUser getUser(@PathVariable(name = "id") Long id){
-        YasarUser user = userService.getOneUser(id);
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/{email}")
+    public YasarUser getOneUser(@PathVariable(name = "email") String email) {
+        YasarUser user = userService.getOneUserMail(email);
         return user;
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
-    public YasarUser uploadImage(@RequestBody ImageUploadRequest imageUploadRequest){
-        YasarUser user = userService.getOneUser(imageUploadRequest.getUserId());
+    public YasarUser uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
+        YasarUser user = userService.getOneUser(imageUploadRequest.getId());
         user.setImage(imageUploadRequest.getImage());
         return user;
 
