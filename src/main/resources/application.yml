@@ -5,8 +5,8 @@ server:
 
 spring:
   datasource:
-    password: 1234
-    url: jdbc:postgresql://localhost:5432/yasarplus
+    password: admin
+    url: jdbc:postgresql://localhost:5432/deneme
     username: postgres
   jpa:
     hibernate:

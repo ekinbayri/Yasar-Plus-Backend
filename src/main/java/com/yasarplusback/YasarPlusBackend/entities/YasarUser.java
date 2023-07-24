@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -19,17 +20,9 @@ import java.util.Collections;
 @Entity
 public class YasarUser implements UserDetails {
 
-
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
 
     private Long id;
     private String name;
@@ -39,7 +32,9 @@ public class YasarUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private Boolean enabled = false;
+    @Column(columnDefinition = "TEXT")
     private String image;
+
     public YasarUser(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
         this.surname = surname;
@@ -61,16 +56,15 @@ public class YasarUser implements UserDetails {
         return password;
     }
 
-
     @Override
     public String getUsername() {
         return email;
     }
+
     @Override
     public boolean isEnabled() {
         return enabled;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
@@ -86,6 +80,5 @@ public class YasarUser implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
 
 }

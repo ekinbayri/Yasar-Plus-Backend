@@ -61,4 +61,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).orElse(null);
     }
 
+    public YasarUser saveOneUser(YasarUser user) {
+        return userRepository.save(user);
+    }
+
 }

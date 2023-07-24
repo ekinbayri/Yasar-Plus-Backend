@@ -22,10 +22,9 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
-    public YasarUser uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
+    public void uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
         YasarUser user = userService.getOneUser(imageUploadRequest.getId());
         user.setImage(imageUploadRequest.getImage());
-        return user;
-
+        userService.saveOneUser(user);
     }
 }
