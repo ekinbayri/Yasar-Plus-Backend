@@ -1,6 +1,6 @@
 package com.yasarplusback.YasarPlusBackend.entities;
 
-import com.yasarplusback.YasarPlusBackend.services.ImageService;
+
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

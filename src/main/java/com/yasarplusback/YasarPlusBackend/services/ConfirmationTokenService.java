@@ -1,7 +1,7 @@
 package com.yasarplusback.YasarPlusBackend.services;
 
 import com.yasarplusback.YasarPlusBackend.repositories.ConfirmationTokenRepository;
-import com.yasarplusback.YasarPlusBackend.token.ConfirmationToken;
+import com.yasarplusback.YasarPlusBackend.entities.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

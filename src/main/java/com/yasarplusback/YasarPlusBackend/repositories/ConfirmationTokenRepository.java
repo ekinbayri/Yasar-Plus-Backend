@@ -1,6 +1,6 @@
 package com.yasarplusback.YasarPlusBackend.repositories;
 
-import com.yasarplusback.YasarPlusBackend.token.ConfirmationToken;
+import com.yasarplusback.YasarPlusBackend.entities.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

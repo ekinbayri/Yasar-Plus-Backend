@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class UserController {
     UserService userService;
-
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/{email}")
     public YasarUser getOneUser(@PathVariable(name = "email") String email) {

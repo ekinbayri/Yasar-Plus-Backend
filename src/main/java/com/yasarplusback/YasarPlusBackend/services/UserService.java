@@ -2,7 +2,7 @@ package com.yasarplusback.YasarPlusBackend.services;
 
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
-import com.yasarplusback.YasarPlusBackend.token.ConfirmationToken;
+import com.yasarplusback.YasarPlusBackend.entities.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,14 +21,11 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
-    private final ImageService imageService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
     }
-
     public String signUpUser(YasarUser user) {
         boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
         if (userExists) {
@@ -48,21 +45,14 @@ public class UserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
     }
-
     public int enableUser(String email) {
         return userRepository.enableUser(email);
     }
-
     public YasarUser getOneUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public YasarUser getOneUserMail(String email) {
-        return userRepository.findByEmail(email).orElse(null);
-    }
+    public YasarUser getOneUserMail(String email) {return userRepository.findByEmail(email).orElse(null);}
 
-    public YasarUser saveOneUser(YasarUser user) {
-        return userRepository.save(user);
-    }
-
+    public YasarUser saveOneUser(YasarUser user) {return userRepository.save(user);}
 }

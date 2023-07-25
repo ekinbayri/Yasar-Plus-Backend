@@ -4,7 +4,7 @@ import com.yasarplusback.YasarPlusBackend.email.EmailSender;
 import com.yasarplusback.YasarPlusBackend.entities.UserRole;
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.requests.RegistrationRequest;
-import com.yasarplusback.YasarPlusBackend.token.ConfirmationToken;
+import com.yasarplusback.YasarPlusBackend.entities.ConfirmationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

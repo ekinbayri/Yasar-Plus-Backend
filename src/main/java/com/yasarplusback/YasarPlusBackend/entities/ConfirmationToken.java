@@ -1,4 +1,4 @@
-package com.yasarplusback.YasarPlusBackend.token;
+package com.yasarplusback.YasarPlusBackend.entities;
 
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import jakarta.persistence.*;
