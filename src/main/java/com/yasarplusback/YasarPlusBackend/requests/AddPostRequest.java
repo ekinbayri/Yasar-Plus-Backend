@@ -12,5 +12,5 @@ import lombok.ToString;
 public class AddPostRequest {
     private final String image;
     private final String text;
-    private final long userId;
+    private final long id;
 }

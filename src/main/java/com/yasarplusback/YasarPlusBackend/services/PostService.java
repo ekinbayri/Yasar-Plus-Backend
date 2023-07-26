@@ -8,6 +8,7 @@ import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
 import com.yasarplusback.YasarPlusBackend.requests.AddCommentRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
 import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.Optional;
 
 @Service
 public class PostService {
+    @Autowired
     UserRepository userRepository;
+    @Autowired
     PostRepository postRepository;
     public void savePost(AddPostRequest postRequest){
         String image = postRequest.getImage();
-        long id = postRequest.getUserId();
+        long id = postRequest.getId();
         String text = postRequest.getText();
         YasarUser user = userRepository.findById(id).orElse(null);
         if(image != null){
