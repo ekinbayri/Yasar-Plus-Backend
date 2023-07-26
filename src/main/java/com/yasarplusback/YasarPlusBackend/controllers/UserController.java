@@ -2,6 +2,7 @@ package com.yasarplusback.YasarPlusBackend.controllers;
 
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.requests.ImageUploadRequest;
+import com.yasarplusback.YasarPlusBackend.requests.UpdateInformationRequest;
 import com.yasarplusback.YasarPlusBackend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,24 @@ public class UserController {
     public void uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
         YasarUser user = userService.getOneUser(imageUploadRequest.getId());
         user.setImage(imageUploadRequest.getImage());
+        userService.saveOneUser(user);
+    }
+    @PostMapping(path = "/background")
+    public void uploadBackground(@RequestBody ImageUploadRequest imageUploadRequest) {
+        YasarUser user = userService.getOneUser(imageUploadRequest.getId());
+        user.setBackground(imageUploadRequest.getImage());
+        userService.saveOneUser(user);
+    }
+    @PostMapping(path = "/info")
+    public void updateInfo(@RequestBody UpdateInformationRequest updateInformationRequest) {
+        YasarUser user = userService.getOneUser(updateInformationRequest.getId());
+        user.setUserInformation(updateInformationRequest.getText());
+        userService.saveOneUser(user);
+    }
+    @PostMapping(path = "/role")
+    public void updateCompanyRole(@RequestBody UpdateInformationRequest updateInformationRequest) {
+        YasarUser user = userService.getOneUser(updateInformationRequest.getId());
+        user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
     }
 }

@@ -55,4 +55,5 @@ public class UserService implements UserDetailsService {
     public YasarUser getOneUserMail(String email) {return userRepository.findByEmail(email).orElse(null);}
 
     public YasarUser saveOneUser(YasarUser user) {return userRepository.save(user);}
+
 }

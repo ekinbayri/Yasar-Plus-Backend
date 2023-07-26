@@ -7,6 +7,8 @@ import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
     UserRepository userRepository;
@@ -25,5 +27,8 @@ public class PostService {
             postRepository.save(post);
         }
 
+    }
+    public List<Post> getAllPosts(){
+        return postRepository.findAll();
     }
 }

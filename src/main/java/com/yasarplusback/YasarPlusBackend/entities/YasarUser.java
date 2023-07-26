@@ -29,11 +29,15 @@ public class YasarUser implements UserDetails {
     private String surname;
     private String email;
     private String password;
+    private String companyRole;
+    private String userInformation;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private Boolean enabled = false;
     @Column(columnDefinition = "TEXT")
     private String image;
+    @Column(columnDefinition = "TEXT")
+    private String background;
 
     public YasarUser(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
