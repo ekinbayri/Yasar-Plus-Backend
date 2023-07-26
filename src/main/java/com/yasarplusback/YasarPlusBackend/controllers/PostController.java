@@ -26,8 +26,10 @@ public class PostController {
     public void addPost(@RequestBody AddPostRequest postRequest) {
         postService.savePost(postRequest);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<Post> getAllPosts(){return postService.getAllPosts();}
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping
     public void addComment(@RequestBody AddCommentRequest addCommentRequest){
         postService.addCommentToPost(addCommentRequest);

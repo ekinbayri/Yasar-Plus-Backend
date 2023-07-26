@@ -27,18 +27,21 @@ public class UserController {
         user.setImage(imageUploadRequest.getImage());
         userService.saveOneUser(user);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/background")
     public void uploadBackground(@RequestBody ImageUploadRequest imageUploadRequest) {
         YasarUser user = userService.getOneUser(imageUploadRequest.getId());
         user.setBackground(imageUploadRequest.getImage());
         userService.saveOneUser(user);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/info")
     public void uploadInfo(@RequestBody TextRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/role")
     public void uploadCompanyRole(@RequestBody TextRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
