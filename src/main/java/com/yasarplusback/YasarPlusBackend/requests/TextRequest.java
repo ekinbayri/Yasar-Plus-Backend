@@ -9,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class UpdateInformationRequest {
+public class TextRequest {
     private final String text;
     private final long id;
 }

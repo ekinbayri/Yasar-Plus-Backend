@@ -1,13 +1,17 @@
 package com.yasarplusback.YasarPlusBackend.services;
 
 import com.yasarplusback.YasarPlusBackend.entities.Post;
+import com.yasarplusback.YasarPlusBackend.entities.UserComment;
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.repositories.PostRepository;
 import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
+import com.yasarplusback.YasarPlusBackend.requests.AddCommentRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
+import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -30,5 +34,20 @@ public class PostService {
     }
     public List<Post> getAllPosts(){
         return postRepository.findAll();
+    }
+    public void addCommentToPost(AddCommentRequest addCommentRequest){
+        String text = addCommentRequest.getText();
+        YasarUser user = userRepository.findById(addCommentRequest.getUserId()).orElse(null);
+        long postId = addCommentRequest.getPostId();
+        Optional<Post> post = postRepository.findById(postId);
+        UserComment userComment = new UserComment(user,text);
+        if(post.isPresent()){
+            Post userPost = post.get();
+            userPost.setUserComment(userComment);
+            postRepository.save(userPost);
+        }
+
+
+
     }
 }

@@ -2,7 +2,7 @@ package com.yasarplusback.YasarPlusBackend.controllers;
 
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.requests.ImageUploadRequest;
-import com.yasarplusback.YasarPlusBackend.requests.UpdateInformationRequest;
+import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
 import com.yasarplusback.YasarPlusBackend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +34,13 @@ public class UserController {
         userService.saveOneUser(user);
     }
     @PostMapping(path = "/info")
-    public void uploadInfo(@RequestBody UpdateInformationRequest updateInformationRequest) {
+    public void uploadInfo(@RequestBody TextRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
     }
     @PostMapping(path = "/role")
-    public void uploadCompanyRole(@RequestBody UpdateInformationRequest updateInformationRequest) {
+    public void uploadCompanyRole(@RequestBody TextRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);

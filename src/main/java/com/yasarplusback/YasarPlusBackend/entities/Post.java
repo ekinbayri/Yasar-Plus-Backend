@@ -30,6 +30,12 @@ public class Post {
     )
 
     private YasarUser user;
+    @ManyToOne
+    @JoinColumn(
+            name = "user_comment_id"
+    )
+
+    private UserComment userComment;
     @Column
     private String postText;
     @Column(columnDefinition = "TEXT")
