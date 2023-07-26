@@ -34,13 +34,13 @@ public class UserController {
         userService.saveOneUser(user);
     }
     @PostMapping(path = "/info")
-    public void updateInfo(@RequestBody UpdateInformationRequest updateInformationRequest) {
+    public void uploadInfo(@RequestBody UpdateInformationRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
     }
     @PostMapping(path = "/role")
-    public void updateCompanyRole(@RequestBody UpdateInformationRequest updateInformationRequest) {
+    public void uploadCompanyRole(@RequestBody UpdateInformationRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
