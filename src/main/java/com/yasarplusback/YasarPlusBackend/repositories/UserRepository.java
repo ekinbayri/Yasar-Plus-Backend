@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
@@ -17,4 +18,8 @@ public interface UserRepository extends JpaRepository<YasarUser,Long> {
     @Query("UPDATE YasarUser a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableUser(String email);
+    @Query("SELECT y FROM YasarUser y WHERE " +
+            "y.name LIKE CONCAT('%',:query, '%')" +
+            "Or y.surname LIKE CONCAT('%', :query, '%')")
+    List<YasarUser> searchUsers(String query);
 }

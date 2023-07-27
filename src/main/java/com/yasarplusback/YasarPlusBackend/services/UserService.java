@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -55,5 +56,9 @@ public class UserService implements UserDetailsService {
     public YasarUser getOneUserMail(String email) {return userRepository.findByEmail(email).orElse(null);}
 
     public YasarUser saveOneUser(YasarUser user) {return userRepository.save(user);}
+
+    public List<YasarUser> searchUsers(String query){
+        return userRepository.searchUsers(query);
+    }
 
 }

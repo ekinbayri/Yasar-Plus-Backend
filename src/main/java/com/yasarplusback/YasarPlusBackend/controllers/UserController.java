@@ -5,7 +5,10 @@ import com.yasarplusback.YasarPlusBackend.requests.ImageUploadRequest;
 import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
 import com.yasarplusback.YasarPlusBackend.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -21,7 +24,7 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping
+    @PostMapping(path = "/image")
     public void uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
         YasarUser user = userService.getOneUser(imageUploadRequest.getId());
         user.setImage(imageUploadRequest.getImage());
@@ -40,6 +43,7 @@ public class UserController {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
+
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/role")
@@ -47,5 +51,10 @@ public class UserController {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping
+    public ResponseEntity<List<YasarUser>> searchUsers(@RequestParam("query") String query) {
+        return ResponseEntity.ok(userService.searchUsers(query));
     }
 }
