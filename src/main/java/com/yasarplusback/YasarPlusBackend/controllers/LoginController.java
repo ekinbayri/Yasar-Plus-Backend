@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
 @RequestMapping(path = "/login") // local:8080/registration
 @AllArgsConstructor
 public class LoginController {
@@ -20,7 +21,7 @@ public class LoginController {
     @Autowired
     private final LoginService loginService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping
     public ResponseEntity<?> loginEmployee(@RequestBody LoginRequest loginRequest) {
         LoginResponse loginResponse = loginService.loginUser(loginRequest);

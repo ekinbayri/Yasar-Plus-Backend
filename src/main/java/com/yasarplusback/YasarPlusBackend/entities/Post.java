@@ -40,6 +40,12 @@ public class Post {
     private String postText;
     @Column(columnDefinition = "TEXT")
     private String postImage;
+    @ManyToOne
+    @JoinColumn(
+            name = "user_like_id"
+    )
+
+    private UserLike userLike;
 
     public Post(YasarUser user, String postText, String postImage) {
         this.postText = postText;

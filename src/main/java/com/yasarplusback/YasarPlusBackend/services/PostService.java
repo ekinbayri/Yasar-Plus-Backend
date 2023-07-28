@@ -2,10 +2,12 @@ package com.yasarplusback.YasarPlusBackend.services;
 
 import com.yasarplusback.YasarPlusBackend.entities.Post;
 import com.yasarplusback.YasarPlusBackend.entities.UserComment;
+import com.yasarplusback.YasarPlusBackend.entities.UserLike;
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
 import com.yasarplusback.YasarPlusBackend.repositories.PostRepository;
 import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
 import com.yasarplusback.YasarPlusBackend.requests.AddCommentRequest;
+import com.yasarplusback.YasarPlusBackend.requests.AddLikeRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
 import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +51,16 @@ public class PostService {
             userPost.setUserComment(userComment);
             postRepository.save(userPost);
         }
-
-
-
+    }
+    public void addLikeToPost(AddLikeRequest addLikeRequest){
+        YasarUser user = userRepository.findById(addLikeRequest.getUserId()).orElse(null);
+        long postId = addLikeRequest.getPostId();
+        Optional<Post> post = postRepository.findById(postId);
+        UserLike userLike = new UserLike(user);
+        if(post.isPresent()){
+            Post userPost = post.get();
+            userPost.setUserLike(userLike);
+            postRepository.save(userPost);
+        }
     }
 }
