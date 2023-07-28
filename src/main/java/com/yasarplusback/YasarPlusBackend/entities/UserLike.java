@@ -11,14 +11,14 @@ import lombok.Setter;
 @Entity
 public class UserLike {
     @SequenceGenerator(
-            name = "comment_sequence",
-            sequenceName = "comment_sequence",
+            name = "like_sequence",
+            sequenceName = "like_sequence",
             allocationSize = 1
     )
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "comment_sequence"
+            generator = "like_sequence"
     )
     private long id;
 

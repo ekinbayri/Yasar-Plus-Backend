@@ -2,6 +2,7 @@ package com.yasarplusback.YasarPlusBackend.controllers;
 
 
 import com.yasarplusback.YasarPlusBackend.entities.Post;
+import com.yasarplusback.YasarPlusBackend.entities.UserLike;
 import com.yasarplusback.YasarPlusBackend.requests.AddCommentRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddLikeRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
@@ -25,8 +26,8 @@ public class PostController {
 
 
     @PostMapping
-    public void addPost(@RequestBody AddPostRequest postRequest) {
-        postService.savePost(postRequest);
+    public Post addPost(@RequestBody AddPostRequest postRequest) {
+        return postService.savePost(postRequest);
     }
 
     @GetMapping
@@ -38,7 +39,7 @@ public class PostController {
     }
 
     @PutMapping(path="/like")
-    public void addLike(@RequestBody AddLikeRequest addLikeRequest){
-        postService.addLikeToPost(addLikeRequest);
+    public List<UserLike> addLike(@RequestBody AddLikeRequest addLikeRequest){
+        return postService.addLikeToPost(addLikeRequest);
     }
 }
