@@ -2,10 +2,14 @@ package com.yasarplusback.YasarPlusBackend.services;
 
 import com.yasarplusback.YasarPlusBackend.entities.Post;
 import com.yasarplusback.YasarPlusBackend.entities.UserComment;
+import com.yasarplusback.YasarPlusBackend.entities.UserLike;
 import com.yasarplusback.YasarPlusBackend.entities.YasarUser;
+import com.yasarplusback.YasarPlusBackend.repositories.CommentRepository;
+import com.yasarplusback.YasarPlusBackend.repositories.LikeRepository;
 import com.yasarplusback.YasarPlusBackend.repositories.PostRepository;
 import com.yasarplusback.YasarPlusBackend.repositories.UserRepository;
 import com.yasarplusback.YasarPlusBackend.requests.AddCommentRequest;
+import com.yasarplusback.YasarPlusBackend.requests.AddLikeRequest;
 import com.yasarplusback.YasarPlusBackend.requests.AddPostRequest;
 import com.yasarplusback.YasarPlusBackend.requests.TextRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,12 @@ public class PostService {
     UserRepository userRepository;
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
+    @Autowired
+    LikeRepository likeRepository;
+
     public Post savePost(AddPostRequest postRequest){
         String image = postRequest.getImage();
         long id = postRequest.getId();
@@ -46,13 +56,30 @@ public class PostService {
         long postId = addCommentRequest.getPostId();
         Optional<Post> post = postRepository.findById(postId);
         UserComment userComment = new UserComment(user,text);
+        commentRepository.save(userComment);
+
         if(post.isPresent()){
             Post userPost = post.get();
-            userPost.setUserComment(userComment);
+            List<UserComment> comments = userPost.getUserComment();
+            comments.add(userComment);
+            userPost.setUserComment(comments);
             postRepository.save(userPost);
         }
+    }
+    public List<UserLike> addLikeToPost(AddLikeRequest addLikeRequest){
+        YasarUser user = userRepository.findById(addLikeRequest.getUserId()).orElse(null);
+        long postId = addLikeRequest.getPostId();
+        Optional<Post> post = postRepository.findById(postId);
+        UserLike userLike = new UserLike(user);
+        likeRepository.save(userLike);
+        Post userPost = post.get();
+        List<UserLike> likes = userPost.getUserLike();
+        likes.add(userLike);
+        userPost.setUserLike(likes);
 
 
+        postRepository.save(userPost);
 
+        return likes;
     }
 }
