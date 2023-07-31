@@ -17,14 +17,14 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/home")
 @AllArgsConstructor
-public class PostController {
+public class   PostController {
     @Autowired
     private final PostService postService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
-    public void addPost(@RequestBody AddPostRequest postRequest) {
-        postService.savePost(postRequest);
+    public Post addPost(@RequestBody AddPostRequest postRequest) {
+       return postService.savePost(postRequest);
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping

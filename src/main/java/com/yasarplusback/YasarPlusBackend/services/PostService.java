@@ -20,7 +20,7 @@ public class PostService {
     UserRepository userRepository;
     @Autowired
     PostRepository postRepository;
-    public void savePost(AddPostRequest postRequest){
+    public Post savePost(AddPostRequest postRequest){
         String image = postRequest.getImage();
         long id = postRequest.getId();
         String text = postRequest.getText();
@@ -28,10 +28,12 @@ public class PostService {
         if(image != null){
             Post post = new Post(user,text,image);
             postRepository.save(post);
+            return post;
         }
         else{
             Post post = new Post(user,text);
             postRepository.save(post);
+            return post;
         }
 
     }
