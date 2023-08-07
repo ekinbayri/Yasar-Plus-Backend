@@ -27,11 +27,8 @@ public class   PostController {
 
     @PostMapping
     public Post addPost(@RequestBody AddPostRequest postRequest) {
-
        return postService.savePost(postRequest);
-
     }
-
     @GetMapping
     public List<Post> getAllPosts(){return postService.getAllPosts();}
 

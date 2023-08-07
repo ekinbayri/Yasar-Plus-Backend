@@ -12,24 +12,24 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(path = "/profile") // local:8080/registration
+@RequestMapping(path = "/profile")
 @AllArgsConstructor
 public class UserController {
     UserService userService;
 
-    @GetMapping(path = "/{email}")
-    public YasarUser getOneUser(@PathVariable(name = "email") String email) {
-        YasarUser user = userService.getOneUserMail(email);
+    @GetMapping(path ="/{email}")
+    public YasarUser getOneUser(@PathVariable(name = "email") String email)
+    {
+        YasarUser  user = userService.getOneUserMail(email);
         return user;
     }
 
-
     @PostMapping(path = "/image")
-    public void uploadImage(@RequestBody ImageUploadRequest imageUploadRequest) {
-        YasarUser user = userService.getOneUser(imageUploadRequest.getId());
+    public void uploadImage(@RequestBody ImageUploadRequest imageUploadRequest)
+    {
+        YasarUser  user = userService.getOneUser(imageUploadRequest.getId());
         user.setImage(imageUploadRequest.getImage());
-        userService.saveOneUser(user);
-    }
+        userService.saveOneUser(user);}
 
     @PostMapping(path = "/background")
     public void uploadBackground(@RequestBody ImageUploadRequest imageUploadRequest) {
@@ -43,13 +43,12 @@ public class UserController {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
         user.setUserInformation(updateInformationRequest.getText());
         userService.saveOneUser(user);
-
     }
 
     @PostMapping(path = "/role")
     public void uploadCompanyRole(@RequestBody TextRequest updateInformationRequest) {
         YasarUser user = userService.getOneUser(updateInformationRequest.getId());
-        user.setUserInformation(updateInformationRequest.getText());
+        user.setCompanyRole(updateInformationRequest.getText());
         userService.saveOneUser(user);
     }
 
